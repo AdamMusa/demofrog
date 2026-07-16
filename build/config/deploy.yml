@@ -23,7 +23,7 @@ ssh:
   config: /home/deployer/.ssh/config
 
 proxy:
-  ssl: true
+  ssl: false
   hosts:
     - dartfrog.alkimist.dev
   app_port: 8080
@@ -33,9 +33,11 @@ proxy:
 
 # Credentials for your image host.
 registry:
-  server: localhost:5555
+  server: localhost:10035
 
 env:
+  secret:
+    - ALKIMIST_PROXY_SSL
   clear:
     PORT: 8080
 
@@ -47,8 +49,8 @@ aliases:
 
 
 # Build on the project's own VPS: Alkimist orchestrates, your server builds.
-# With registry.server localhost:5555, Kamal runs a transfer registry on the
-# deploy container and SSH-forwards port 5555 to the VPS for push and pull.
+# Alkimist provisions a project-scoped transfer registry and SSH-forwards
+# its unique port to the VPS, allowing independent concurrent builds.
 builder:
   arch: amd64
   local: false
