@@ -23,7 +23,7 @@ ssh:
   config: /home/deployer/.ssh/config
 
 proxy:
-  ssl: false
+  ssl: true
   hosts:
     - dartfrog.alkimist.dev
   app_port: 8080
@@ -36,8 +36,6 @@ registry:
   server: localhost:10035
 
 env:
-  secret:
-    - ALKIMIST_PROXY_SSL
   clear:
     PORT: 8080
 
